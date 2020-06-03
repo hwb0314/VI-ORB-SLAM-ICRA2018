@@ -3,7 +3,8 @@ This is a developing project for ICRA 2018 paper -- "Online Initialization and A
 It is built upon the ORB-SLAM2 project.
 The code in the project is not concise enough, so it may be hard to read.
 
-### If you use the related code about the initialization, please cited our publication:
+### If you use the related code about the initialization, please cite:
+```
 @inproceedings{huang2018online,
   title={Online initialization and automatic camera-IMU extrinsic calibration for monocular visual-inertial SLAM},
   author={Huang, Weibo and Liu, Hong},
@@ -12,6 +13,7 @@ The code in the project is not concise enough, so it may be hard to read.
   year={2018},
   organization={IEEE}
 }
+```
 
 # ORB-SLAM2
 **Authors:** [Raul Mur-Artal](http://webdiis.unizar.es/~raulmur/), [Juan D. Tardos](http://webdiis.unizar.es/~jdtardos/), [J. M. M. Montiel](http://webdiis.unizar.es/~josemari/) and [Dorian Galvez-Lopez](http://doriangalvez.com/) ([DBoW2](https://github.com/dorian3d/DBoW2))
