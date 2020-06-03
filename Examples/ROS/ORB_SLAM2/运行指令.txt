@@ -1,0 +1,4 @@
+运行ROS程序时,需要使用OpenCV2.4 (因为当前ROS版本为indigo,不支持Opencv3.0版本)
+$ cd ~/rosbuild_ws/package_dir/ORB_SLAM2_OpenCV3.2
+$ rosrun ORB_SLAM2 Mono Vocabulary/ORBvoc.txt Examples/ROS/ORB_SLAM2/EuRoC.yaml
+$ rosbag play ~/Documents/SLAM_Dataset/EuRoC/rosbag_file/V2_01_easy.bag

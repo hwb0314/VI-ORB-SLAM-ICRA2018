@@ -1,0 +1,161 @@
+%YAML:1.0
+
+# Modify test.InitVIOTmpPath and bagfile to the correct path
+# Path to save tmp files/results
+test.InitVIOTmpPath: "/home/hri/rosbuild_ws/package_dir/ORB_SLAM2_OpenCV3.2/Examples/ROS/ORB_VIO/tmp_results/"
+
+## For good initialization (no movement at the beginning for some bag)
+test.DiscardTime: 0
+# bagfile: "/home/hri/Documents/SLAM_Dataset/EuRoC/rosbag_file/MH_01_easy.bag"
+## bad: V1_03_difficult(wrong), V2_03_difficult(lost)
+## not so good(cant close loop without loopclosure): V1_02_medium, V2_02_medium, MH_05_difficult
+## good: V1_01_easy, V2_01_easy, MH_01_easy, MH_02_easy, MH_03_medium, MH_04_difficult
+
+# test.DiscardTime: 18
+#bagfile: "/home/hri/Documents/SLAM_Dataset/EuRoC/rosbag_file/MH_03_medium.bag"
+
+#bagfile: "/home/hri/Documents/SLAM_Dataset/EuRoC/rosbag_file/MH_04_difficult.bag"
+#bagfile: "/home/hri/Documents/SLAM_Dataset/EuRoC/rosbag_file/MH_05_difficult.bag"
+#bagfile: "/home/hri/Documents/SLAM_Dataset/EuRoC/rosbag_file/MH_02_easy.bag"
+#bagfile: "/home/hri/Documents/SLAM_Dataset/EuRoC/rosbag_file/MH_01_easy.bag"
+#bagfile: "/home/hri/Documents/SLAM_Dataset/EuRoC/rosbag_file/V2_02_medium.bag"
+#bagfile: "/home/hri/Documents/SLAM_Dataset/EuRoC/rosbag_file/V2_01_easy.bag"
+#bagfile: "/home/hri/Documents/SLAM_Dataset/EuRoC/rosbag_file/V1_02_medium.bag"
+#bagfile: "/home/hri/Documents/SLAM_Dataset/EuRoC/rosbag_file/V1_01_easy.bag"
+
+#bagfile: "/home/hri/Documents/SLAM_Dataset/EuRoC/rosbag_file/V1_03_difficult.bag"
+#bagfile: "/home/hri/Documents/SLAM_Dataset/EuRoC/rosbag_file/V2_03_difficult.bag"
+
+
+#######################################
+
+# set running mode
+# 0: Monocular; 1: MonoVI;
+runningMode: 1
+
+# set whether deactive Loop Closure detection
+# 1: Deactive; 0: active
+deactiveLoopClosure: 0
+
+# set whether track LocalMap only with vision
+# 1: only with vision without IMU; 0: else
+onlyTrackLocalMap: 0
+
+# set whether display the time-consuming of different section.
+# 1: Display; 0: Not display
+dispalyTimeStatistic: 0
+
+# Set whether the TrackWithMotionModel() and TrackLocalMap() aid the tracking process
+# when the TrackWithIMU() and TrackLocalMapWithIMU() fail
+# 1: aid; 0: not aid
+visionAidWhenTrackWithIMUFail: 0
+
+# Wait local mapping end.
+# Do not process next frame until local mapping is idle. (This can noly be used in read rosbag)
+# Due to this waitting, the system is slow.
+waitUntilLocalMapIdle: 0
+
+# estimate Extrinsic between camera and IMU
+# 1: estimate; 0: not estimate (use pre-calibration parameters)
+estimateExtrinsicBetweenCameraAndIMU: 1
+
+# create random matrix (Rbcstar_last) for the first VIO initialization
+# 1: create random matrix; 0: use Identity matrix
+CreateRandomMatrixLastForFirstVIOInit: 0
+
+imutopic: "/imu0"
+imagetopic: "/cam0/image_raw"
+
+# Timestamp shift. Timage = Timu + image_delay
+Camera.delaytoimu: 0
+
+# acc=acc*9.8, if below is 1
+IMU.multiplyG: 0
+
+# camera-imu frame transformation, Pi = Tic * Pc
+# for cam0 and imu0
+Camera.Tbc:
+ [0.0148655429818, -0.999880929698, 0.00414029679422, -0.0216401454975,
+  0.999557249008, 0.0149672133247, 0.025715529948, -0.064676986768,
+  -0.0257744366974, 0.00375618835797, 0.999660727178, 0.00981073058949,
+  0.0, 0.0, 0.0, 1.0]
+
+# Local Window size
+LocalMapping.LocalWindowSize: 10
+
+#--------------------------------------------------------------------------------------------
+# Imu Parameters. Adjust them!
+# For EuRoc dataset, according to V1_01_easy/imu0/sensor.yaml
+#--------------------------------------------------------------------------------------------
+
+# imu sample rate per second
+IMU.rate: 200
+
+# inertial sensor noise model parameters (static)
+# gyro "white noise" [ rad / s / sqrt(Hz) ]
+IMU.sigma_g: 1.6968e-04
+
+# gyro bias diffusion [ rad / s^2 / sqrt(Hz) ]
+IMU.sigma_gw: 1.9393e-05
+
+# accel "white noise" [ m / s^2 / sqrt(Hz) ]
+IMU.sigma_a: 2.0000e-3
+
+# accel bias diffusion [ m / s^3 / sqrt(Hz) ].
+IMU.sigma_aw: 3.0000e-3
+
+#--------------------------------------------------------------------------------------------
+# Camera Parameters. Adjust them!
+#--------------------------------------------------------------------------------------------
+
+# Camera calibration and distortion parameters (OpenCV) 
+Camera.fx: 458.654
+Camera.fy: 457.296
+Camera.cx: 367.215
+Camera.cy: 248.375
+
+Camera.k1: -0.28340811
+Camera.k2: 0.07395907
+Camera.p1: 0.00019359
+Camera.p2: 1.76187114e-05
+
+# Camera frames per second 
+Camera.fps: 20.0
+
+# Color order of the images (0: BGR, 1: RGB. It is ignored if images are grayscale)
+Camera.RGB: 1
+
+#--------------------------------------------------------------------------------------------
+# ORB Parameters
+#--------------------------------------------------------------------------------------------
+
+# ORB Extractor: Number of features per image
+ORBextractor.nFeatures: 1000
+
+# ORB Extractor: Scale factor between levels in the scale pyramid 	
+ORBextractor.scaleFactor: 1.2
+
+# ORB Extractor: Number of levels in the scale pyramid	
+ORBextractor.nLevels: 8
+
+# ORB Extractor: Fast threshold
+# Image is divided in a grid. At each cell FAST are extracted imposing a minimum response.
+# Firstly we impose iniThFAST. If no corners are detected we impose a lower value minThFAST
+# You can lower these values if your images have low contrast			
+ORBextractor.iniThFAST: 20
+ORBextractor.minThFAST: 7
+
+#--------------------------------------------------------------------------------------------
+# Viewer Parameters
+#---------------------------------------------------------------------------------------------
+Viewer.KeyFrameSize: 0.05
+Viewer.KeyFrameLineWidth: 1
+Viewer.GraphLineWidth: 0.9
+Viewer.PointSize:2
+Viewer.CameraSize: 0.08
+Viewer.CameraLineWidth: 3
+Viewer.ViewpointX: 0
+Viewer.ViewpointY: -0.7
+Viewer.ViewpointZ: -1.8
+Viewer.ViewpointF: 500
+

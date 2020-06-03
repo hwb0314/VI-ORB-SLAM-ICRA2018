@@ -1,0 +1,9 @@
+<launch>
+<!--MH_01_easy MH_02_easy MH_03_medium MH_04_difficult MH_05_difficult V1_01_easy V1_02_medium V1_03_difficult V2_01_easy V2_02_medium V2_03_difficult  -->
+	<arg name="sequence_name" default = "MH_01_easy" />
+
+ 	<node pkg="ORB_VIO" type="ORB_VIO_ReadROSBag" name="ORB_VIO_ReadROSBag"  args="$(find ORB_VIO)/../../../Vocabulary/ORBvoc.bin $(find ORB_VIO)/Config/EuRoC.yaml $(arg sequence_name)" cwd="node" output="screen">
+	</node>
+
+</launch>
+

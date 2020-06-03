@@ -1,0 +1,8 @@
+1. for EuRoC/V1_01_easy
+$ ./Examples/Monocular/mono_euroc Vocabulary/ORBvoc.txt Examples/Monocular/EuRoC.yaml /home/hri/Documents/SLAM_Dataset/EuRoC/V1_01_easy/mav0/cam0/data Examples/Monocular/EuRoC_TimeStamps/V101.txt 
+
+1. for EuRoC/V1_02_medium
+$ ./Examples/Monocular/mono_euroc Vocabulary/ORBvoc.txt Examples/Monocular/EuRoC.yaml /home/hri/Documents/SLAM_Dataset/EuRoC/V1_02_medium/mav0/cam0/data Examples/Monocular/EuRoC_TimeStamps/V102.txt 
+
+2. for TUM fr3_long_office
+$ ./Examples/Monocular/mono_tum Vocabulary/ORBvoc.txt Examples/Monocular/TUM3.yaml /home/hri/Documents/SLAM_Dataset/Dataset_from_TUM/AllSequence/TUMSequenceUsedByORBSLAM_16/fr3_long_office
