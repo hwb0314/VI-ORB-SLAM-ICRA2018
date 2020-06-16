@@ -176,7 +176,7 @@ public:
    * @param levelsup levels to go up the vocabulary tree to get the node index
    */
   virtual void transform(const std::vector<TDescriptor>& features,
-    BowVector &v, FeatureVector &fv, int levelsup) const;
+    BowVector &v, FeatureVector &fv, int levelsup);
 
   /**
    * Transforms a single feature into a word (without weight)
@@ -1165,7 +1165,7 @@ void TemplatedVocabulary<TDescriptor,F>::transform(
 template<class TDescriptor, class F>
 void TemplatedVocabulary<TDescriptor,F>::transform(
   const std::vector<TDescriptor>& features,
-  BowVector &v, FeatureVector &fv, int levelsup) const
+  BowVector &v, FeatureVector &fv, int levelsup)
 {
   v.clear();
   fv.clear();
